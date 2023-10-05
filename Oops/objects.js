@@ -118,22 +118,40 @@
 
 // Adding & removing properties
 
-function Circle2(radius) {
-    this.radius = radius;
-    this.draw = function() {
-        console.log('const draw');
-    }
+// function Circle2(radius) {
+//     this.radius = radius;
+//     this.draw = function() {
+//         console.log('const draw');
+//     }
+// }
+
+// const circle2 = new Circle2(1);
+
+// console.log('circle2', circle2);
+
+
+// circle2.location = { x: 1 };
+
+// const propertyName = "location name";
+
+// circle2[propertyName] = { y: 2 };
+
+// delete circle2[propertyName];
+
+// Enumerating properties
+
+for(let key in circle2) {
+    if(typeof circle2[key] != 'function') 
+        console.log(key, circle2[key]);
 }
 
-const circle2 = new Circle2(1);
+let keys = Object.keys(circle2);
+console.log('keys', keys);
 
-console.log('circle2', circle2);
+if('radius' in circle2) {
+    console.log('yes radius property present');
+    
+}
 
 
-circle2.location = { x: 1 };
 
-const propertyName = "location name";
-
-circle2[propertyName] = { y: 2 };
-
-delete circle2[propertyName];
