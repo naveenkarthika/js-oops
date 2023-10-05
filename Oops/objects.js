@@ -159,13 +159,38 @@
 // Closures - Function inside another function access their parent variables & methods 
 // Contrast to we have scope closure determines what variables will be accessible to an inner function.
 
+// function Circle(radius) {
+//     this.radius = radius;
+
+//     let defaultLocation = { x: 1 };
+
+//     let computeOptimumLocation = function(number) {
+//         return number
+//     }
+
+//     this.draw = function() {
+//         let x, y; // this varible is local scope, when you execute this function this will be out of scope.
+//         computeOptimumLocation(20);
+//         console.log(defaultLocation)
+//         console.log('draw', this.radius);
+//     }
+// }
+
+// const circle = new Circle(1);
+
+// Getter / Setter
+
 function Circle(radius) {
     this.radius = radius;
 
-    let defaultLocation = { x: 1 };
+    let defaultLocation = { x: 1, y: 2 };
 
     let computeOptimumLocation = function(number) {
         return number
+    }
+
+    this.getDefaultLocation = function() {
+        return defaultLocation;
     }
 
     this.draw = function() {
@@ -174,6 +199,16 @@ function Circle(radius) {
         console.log(defaultLocation)
         console.log('draw', this.radius);
     }
+
+    Object.defineProperty(this, 'defaultLocation', {
+        get: function() {
+            return defaultLocation;
+        },
+        set: function(value) {
+            if(!value.x || !value.y) throw new Error('Invalid location')
+            defaultLocation = value;
+        }
+    })
 }
 
 const circle = new Circle(1);
