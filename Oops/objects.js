@@ -140,18 +140,42 @@
 
 // Enumerating properties
 
-for(let key in circle2) {
-    if(typeof circle2[key] != 'function') 
-        console.log(key, circle2[key]);
-}
+// for(let key in circle2) {
+//     if(typeof circle2[key] != 'function') 
+//         console.log(key, circle2[key]);
+// }
 
-let keys = Object.keys(circle2);
-console.log('keys', keys);
+// let keys = Object.keys(circle2);
+// console.log('keys', keys);
 
-if('radius' in circle2) {
-    console.log('yes radius property present');
+// if('radius' in circle2) {
+//     console.log('yes radius property present');
     
+// }
+
+// Encapsulation
+
+// Hide the details & provide only essential functions & properties
+// Closures - Function inside another function access their parent variables & methods 
+// Contrast to we have scope closure determines what variables will be accessible to an inner function.
+
+function Circle(radius) {
+    this.radius = radius;
+
+    let defaultLocation = { x: 1 };
+
+    let computeOptimumLocation = function(number) {
+        return number
+    }
+
+    this.draw = function() {
+        let x, y; // this varible is local scope, when you execute this function this will be out of scope.
+        computeOptimumLocation(20);
+        console.log(defaultLocation)
+        console.log('draw', this.radius);
+    }
 }
 
+const circle = new Circle(1);
 
 
