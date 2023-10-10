@@ -8,6 +8,15 @@ interface CarObject {
     carBrand?: string // optional parameter
 }
 
+interface LocationObject {
+    location: string,
+    dateTime: Date,
+    coords: {
+        lat: number,
+        lng: number
+    }
+}
+
 class Car {
     name: string;
     color: string;
@@ -28,6 +37,13 @@ class Car {
     stop(){
         console.log(`${this.name} Stopped`);
     }
+    // Array<Object> - empty array || array inside n no.of objects
+    // [{}] - Must only one array of Object
+    goToLocation(location: Array<LocationObject>) {
+        location.map(e => {
+            console.log(e.coords.lat);
+        })
+    }
 }
 
 
@@ -39,3 +55,11 @@ const car = new Car({
 car.start()
 car.move('LEFT')
 car.stop()
+car.goToLocation([{
+    location: 'Chennai',
+    dateTime: new Date(),
+    coords: {
+        lat: 12.33,
+        lng: 34.23
+    }
+}])
