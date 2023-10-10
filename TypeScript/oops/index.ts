@@ -2,14 +2,19 @@
 // define own type
 type CarDirection = 'LEFT' | 'RIGHT' | 'FORWARD' | 'BACK';
 
+interface CarObject {
+    carName: string,
+    carColor: string,
+    carBrand?: string // optional parameter
+}
 
 class Car {
     name: string;
     color: string;
 
-    constructor(carName: string, carColor: string) {
-        this.name = carName;
-        this.color = carColor;
+    constructor(config: CarObject) {
+        this.name = config.carName;
+        this.color = config.carColor;
     }
 
     start(){
@@ -26,7 +31,10 @@ class Car {
 }
 
 
-const car = new Car('BMW', 'Black');
+const car = new Car({
+    carName: 'BMW',
+    carColor: 'Black'
+});
 
 car.start()
 car.move('LEFT')
